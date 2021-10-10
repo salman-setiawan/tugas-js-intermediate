@@ -14,6 +14,11 @@ const obj = {
   
 obj.fun1();
 obj.fun2();
+// 
+// JAWABAN
+// 1. Akan menjalankan method fun1 didalam obj, dan menjalankan method fun2 didalam obj
+// 2. Berbeda
+// 3. Karena
 
 
 // SOAL NO 2
@@ -21,11 +26,43 @@ obj.fun2();
 // 2. Apa itu Abstraction? Mengapa kita membutuhkannya?
 // 3. Apa itu Inheritance? Mengapa kita membutuhkannya?
 // 4. Apa itu Polymorpishm? Mengapa kita membutuhkannya?
-
+// 
+// JAWAB
+// 1. cara untuk membatasi akses langsung ke properti atau method dari sebuah objek
+//    kita membutuhkannya karena dapat mencegah perubahan data secara tidak disengaja
+// 2. teknik untuk menyembunyikan detail tertentu dari sebuah objek/method dan hanya menampilkan fungsionalitas atau fitur penting dari objek tersebut.
+//    kita membutuhkannya karena untuk menyembunyikan detail yang tidak terlalu penting dari pengguna dan fokus pada fitur objek tersebut
+// 3. proses dimana sebuah class mewariskan property dan methodnya ke class lain atau childnya.
+//    kita membutuhkannya karena dapat menimpa atau memberi fungsi baru tanpa mempengaruhi parent-class yang sudah dibuat
+// 4. kemampuan dari suatu objek untuk memiliki banyak bentuk
+//    kita membutuhkannya karena memudahkan kita untuk menggunakan metode dengan nama yang sama pada class yang berbeda
 
 
 // SOAL NO 3
 class Phone {
+  constructor(brand, storage, ram) {
+    this.brand = brand;
+    this.storage = storage;
+    this.ram = ram;
+  }
+
+  getBrandName() {
+    return this.brand
+  }
+
+  setBrandName(rani) {
+    return this.brand = rani
+  }
+
+  printSpecification() {
+    return `Ponsel ini memiliki storage: ${this.storage} dan ram: ${this.ram}`
+  }
+
+  setSpecification(storageBaru, ramBaru) {
+    this.storage = storageBaru
+    this.ram = ramBaru
+    return
+  }
 
 }
 
@@ -35,42 +72,88 @@ console.log(phone.getBrandName());
 phone.setBrandName("SM.co")
 console.log(phone.getBrandName());
 
-phone.printSpecification();
+console.log(phone.printSpecification());
 phone.setSpecification(32, 2);
-phone.printSpecification();
+console.log(phone.printSpecification());
+
+
+
 
 
 
 // SOAL NO 4
 class Student {
-    constructor(name, email) {
-        this.name = name;
-        this.email = email;
-        this.courseOfferings = [];
-    }
-    
-    takeNewCourse() {
+  constructor(name, gender) {
+    this.name = name;
+    this.gender = gender;
+    this.courseOfferings = [];
+  }
 
-    }
-    
-    takeATest() {
+  getIndexFromCourse(course) {
+    const indexOfCourse = this.courseOfferings.findIndex((courseOffering) => {
+      return courseOffering.course.getSubject() === course.getSubject();
+    });
 
-    }
-    
-    courseAttendance() {
-
-    }
-}
+    return indexOfCourse;
+  }
   
-class CourseOffering {
+  takeNewCourse(course) {
+    const isCourseExist = this.courseOfferings.find((courseOffering) => {
+      return courseOffering.course.getSubject() === course.getSubject();
+    });
 
+    if (this.courseOfferings.length === 0 || !isCourseExist) {
+      this.courseOfferings.push(new CourseOffering(course));
+      course.decreaseQuota();
+    }
+  }
+  
+  courseAttendance(course) {
+    const indexOfCourse = this.getIndexFromCourse(course);
+    if (indexOfCourse >= 0) {
+      this.courseOfferings[indexOfCourse].attendance++;
+    }
+  }
+
+  takeATest(course) {
+    const indexOfCourse = this.getIndexFromCourse(course);
+    if (indexOfCourse >= 0) {
+      if (this.courseOfferings[indexOfCourse].attendance >= course.getAttendance()) {
+        this.courseOfferings[indexOfCourse].grade = Math.floor(Math.random() * 100);
+      } 
+      else {
+        console.log("please fill your absen");
+      }
+    }
+  }
+}
+
+class CourseOffering {
+  constructor(course) {
+    this.course = course;
+    this.attendance = 0;
+    this.grade = 0;
+  }
 }
 
 class Course {
-
+  constructor(subject, quota, attendance) {
+    this.subject = subject;
+    this.quota = quota;
+    this.attendance = attendance;
+  }
+  getSubject() {
+    return this.subject;
+  }
+  getAttendance() {
+    return this.attendance;
+  }
+  decreaseQuota() {
+    this.quota--;
+  }
 }
   
-  
+
 const biology = new Course("biology", 10, 3);
 const physics = new Course("physics", 10, 2);
 

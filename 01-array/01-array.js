@@ -1,8 +1,13 @@
 // SOAL NO 1
 const arr = [1, 2, 3];
 const arr2 = [8, 1, 5, 7];
-function reverse() {
-
+function reverse(arr) {
+    let panjangArr = arr.length - 1;
+    let reversedArr = [];
+    for (i = panjangArr; i >= 0; i--) {
+      reversedArr.push(arr[i]);
+    }
+    return reversedArr;
 }
 
 const newArr = reverse(arr);
@@ -26,16 +31,31 @@ console.log(getAverage(arr2))
 
 // SOAL NO 3
 const arr = [
-    [10],
-    [9, 7, 1],
-    [2, 8],
-  ];
-  
-  function searchInArray() {
+  [10],
+  [9, 7, 1],
+  [2, 8],
+];
 
+function searchInArray(arr, numberFind) {
+  let arrOneDimension = [];
+
+  for (i = 0; i < arr.length; i++) {
+    for (a = 0; a < arr[i].length; a++) {
+      arrOneDimension.push(arr[i][a]);
+    }
   }
-  
-  console.log(searchInArray(arr, 3));
-  console.log(searchInArray(arr, 2));
-  console.log(searchInArray(arr, 4));
-  console.log(searchInArray(arr, 8));
+
+  for (x = 0; x < arrOneDimension.length; x++) {
+    if (arrOneDimension[x] == numberFind) {
+      return x;
+    } else {
+      continue;
+    }
+  }
+}
+
+
+console.log(searchInArray(arr, 3));
+console.log(searchInArray(arr, 2));
+console.log(searchInArray(arr, 4));
+console.log(searchInArray(arr, 8));

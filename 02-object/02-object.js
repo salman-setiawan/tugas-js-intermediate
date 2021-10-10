@@ -1,56 +1,69 @@
 // SOAL NO 1
-const person = {
-    name: "person A",
-    age: 100,
-    favDrinks: [
-      "coffee",
-      "jamu temulawak",
-      "tea"
-    ],
-    greeting: function() {
-      console.log("hello world")
-    }
-}
+// const person = {
+//     name: "person A",
+//     age: 100,
+//     favDrinks: [
+//       "coffee",
+//       "jamu temulawak",
+//       "tea"
+//     ],
+//     greeting: function() {
+//       console.log("hello world")
+//     }
+// }
   
-/// EDIT HERE
+// /// EDIT HERE
+// person.name = "salman"
+// person.favDrinks[1] = "tap water"
+// person.greeting = function(NAME) {
+//   return `Hello, ${NAME}`
+// }
   
+// /// STOP
   
-/// STOP
-  
-console.log(person.name);
-console.log(person.age);
-console.log(person.favDrinks);
-console.log(person.greeting("John Watson"));
+// console.log(person.name);
+// console.log(person.age);
+// console.log(person.favDrinks);
+// console.log(person.greeting("John Watson"));
 
 
 // SOAL NO 2
-function getObjectValue() {
+// function getObjectValue(obj, path) {
+//   const paths = path.split('.')
+//   for (let i = 0; i < paths.length; i++) {
+//     if (obj[paths[i]] == undefined) {
+//       return null;
+//     }
+//     else {
+//       obj = obj[paths[i]];
+//     }
+//   }
+//   return obj;
+// }
 
-}
+// const milkBasedCoffee = {
+//     name: "latte",
+//     ingredients: {
+//         espresso: {
+//             origin: "lampung",
+//             roastProfile: "medium to dark",
+//             ratio: 1
+//         },
+//         milk: {
+//             brand: "susu murni",
+//             isVegan: false,
+//             ratio: 5
+//         }
+//     },
+// }
 
-const milkBasedCoffee = {
-    name: "latte",
-    ingredients: {
-        espresso: {
-            origin: "lampung",
-            roastProfile: "medium to dark",
-            ratio: 1
-        },
-        milk: {
-            brand: "susu murni",
-            isVegan: false,
-            ratio: 5
-        }
-    },
-}
+// const espresso = getObjectValue(milkBasedCoffee, "ingredients.espresso.origin");
+// const coffeeBrand = getObjectValue(milkBasedCoffee, "ingredients.espresso.brand");
+// const isMilkVegan = getObjectValue(milkBasedCoffee, "ingredients.milk.isVegan");
 
-const espresso = getObjectValue(milkBasedCoffee, "ingredients.espresso.origin");
-const coffeeBrand = getObjectValue(milkBasedCoffee, "ingredients.espresso.brand");
-const isMilkVegan = getObjectValue(milkBasedCoffee, "ingredients.milk.isVegan");
-
-console.log(espresso);
-console.log(coffeeBrand);
-console.log(isMilkVegan)
+// console.log(espresso);
+// console.log(coffeeBrand);
+// console.log(isMilkVegan);
 
 
 // SOAL NO 3
