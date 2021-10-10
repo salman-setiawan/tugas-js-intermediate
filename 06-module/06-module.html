@@ -40,8 +40,8 @@
 
     <script type="module">
       // IMPORT HERE
-      import  sayHello, { greeting } from "./06-module-helpers.js";
-      import  validateLoginData from "./06-modules-authentication.js";
+      import sayHello, { greeting } from "./06-module-helpers.js";
+      import validateLoginData from "./06-modules-authentication.js";
 
       const elFormGreeting = document.querySelector("#form-greeting");
       const elFormLogin = document.querySelector("#form-login");
@@ -51,16 +51,17 @@
       const elInputPassword = document.querySelector("#input-password");
 
       // EDIT HERE
-      // No 1
+      
+      // NOMOR 1
       sayHello();
 
-      // No 2
+      // NOMOR 2
       elFormGreeting.onsubmit = function(e){
         e.preventDefault();
         greeting(elInputName.value);
       }
 
-      // No 3
+      // NOMOR 3
       elFormLogin.onsubmit = function(e){
         e.preventDefault();
         validateLoginData(elInputEmail.value, elInputPassword.value);
