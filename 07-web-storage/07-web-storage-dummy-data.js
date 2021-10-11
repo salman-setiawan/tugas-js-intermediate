@@ -644,3 +644,5 @@ const githubUsers = [
       site_admin: false,
     },
 ];
+
+export default githubUsers;

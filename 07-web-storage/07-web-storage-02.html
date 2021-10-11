@@ -55,7 +55,7 @@
     <script type="module">
       import githubUsers from "./07-web-storage-dummy-data.js";
 
-      const elFormUsername = document.querySelector("#form-username");
+      const elFormUsername = document.querySelector("#form-username"); //input username
       const elDivUsername = document.querySelector("#div-username");
       const elUsername = document.querySelector("#username");
       const elListUser = document.querySelector("#list-user");
@@ -63,7 +63,7 @@
 
       // WEB STORAGE
       let username = sessionStorage.getItem("username");
-      let profile = localStorage.getItem(username ? username : "");
+      let profile = localStorage.getItem(username);
 
       // Change login button with username input
       elFormUsername.onsubmit = function(e){    
@@ -77,6 +77,7 @@
         elFormUsername.classList.add("d-none");
         elUsername.innerHTML = getValue;
         console.log(username);
+        console.log(profile);
 
         // Show card
         if (username != null){
@@ -99,7 +100,7 @@
             elCardTitle.innerHTML = user.login;
   
             const elCardButton = document.createElement("button");
-            elCardButton.classList.add("btn", "btn-primary", "w-100");
+            elCardButton.classList.add("btn", "btn-primary", "w-100", "follow-button");
             elCardButton.setAttribute("type", "button");
             elCardButton.innerHTML = "Follow";
   
@@ -110,6 +111,31 @@
             elCol.appendChild(elCard);
   
             elListUser.appendChild(elCol);
+            elBadgeUser.classList.remove("d-none");
+
+            let elFollowButtons = document.querySelectorAll(".follow-button");
+            let toogle = true;
+            for (let i = 0; i < elFollowButtons.length; i++) {
+              const followButton = elFollowButtons[i];
+              followButton.addEventListener("click", function () {
+                const userId = this.getAttribute("data-id");
+                const userDataDummy = githubUsers.find(
+                  (f) => f.id === Number(userId)
+                );
+                if (toogle) {
+                  this.classList.add("btn", "btn-success", "w-100");
+                  this.setAttribute("type", "button");
+                  this.innerHTML = "Unfollow";
+                  toogle = false
+                } else {
+                  this.classList.remove("btn-success");
+                  this.classList.add("btn", "btn-primary", "w-100");
+                  this.setAttribute("type", "button");
+                  this.innerHTML = "Follow";
+                  toogle = true
+                }
+              });
+            }
           });
         }
       }

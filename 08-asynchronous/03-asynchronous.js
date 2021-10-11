@@ -1,27 +1,22 @@
 // SOAL NO 3
-const getGitHubUser = (username) => {
-    let dataUser = {};
-    if (username === "") {
-      return null;
+const getGitHubUser = async (username) => {
+  try {
+    if(!username) {
+      return null
     }
-  
-    return new Promise((resolve, reject) => {
-      let getData = fetch(`https://api.github.com/users/${username}`);
-  
-      getData
-        .then((data) => {
-          return data.json();
-        })
-        .then((result) => {
-          if (result.message === "Not Found") {
-            reject("Not Found");
-          } else {
-            resolve(result);
-          }
-        });
-    });
-  };
-  
+    const data = await fetch(`https://api.github.com/users/${username}`);
+    let respon = await data.json()
+    if(respon?.login) {
+      return "Object"
+    }
+  }
+  catch (error) {
+    console.log(error)
+  }
+  return "not found"
+}
+
+
 const printGitHubUser = async () => {
   const mojombo = await getGitHubUser("mojombo");
   const orange = await getGitHubUser("");
@@ -31,5 +26,5 @@ const printGitHubUser = async () => {
   console.log(orange);
   console.log(rudiTabuti);
 }
-
+  
 printGitHubUser();
