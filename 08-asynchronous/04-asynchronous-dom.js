@@ -17,7 +17,7 @@ const getGitHubUser = async (USERNAME) => {
   catch (error) {
     console.log(error);
   }
-};
+}
 
 elFormUsername.onsubmit = async (e) => {
   e.preventDefault();
