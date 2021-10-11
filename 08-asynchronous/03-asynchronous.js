@@ -1,4 +1,5 @@
 // SOAL NO 3
+// Execute menggunakan file html
 const getGitHubUser = async (username) => {
   try {
     if(!username) {
